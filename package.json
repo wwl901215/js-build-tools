@@ -1,0 +1,19 @@
+{
+    "name": "@wwl/babel-tools",
+    "version": "0.0.1",
+    "description": "Js Build Tools Learn",
+    "license": "MIT",
+    "type": "module",
+    "scripts": {
+        "mec": "node ./scripts/modifyEnvConfig.js",
+        "mj": "node ./scripts/mofifyJson.js",
+        "mp": "node ./scripts/modifyProject.js"
+    },
+    "dependencies": {
+        "@babel/cli": "^7.23.9",
+        "@babel/core": "^7.23.9",
+        "@babel/preset-env": "^7.23.9",
+        "minimist": "^1.2.8",
+        "prettier": "^3.2.4"
+    }
+}
