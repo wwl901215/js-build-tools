@@ -5,41 +5,10 @@
   "appid": "1111",
   "setting": {
     "urlCheck": false,
-    "es6": false,
-    "enhance": true,
-    "postcss": false,
-    "checkSiteMap": true,
-    "uploadWithSourceMap": true,
     "babelSetting": {
       "ignore": [],
-      "disablePlugins": [],
       "outputPath": ""
     },
     "useStaticServer": true
-  },
-  "compileType": "miniprogram",
-  "libVersion": "3.0.1",
-  "srcMiniprogramRoot": "dist/",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
-  "editorSetting": {
-    "tabIndent": "insertSpaces",
-    "tabSize": 2
-  },
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "M2: 卡券即将过期通知",
-          "pathName": "/lll/mmm",
-          "query": "",
-          "scene": 1014
-        }
-      ]
-    }
   }
 }

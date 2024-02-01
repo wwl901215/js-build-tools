@@ -4,6 +4,7 @@ import * as readline from "node:readline";
 import * as prettier from "prettier";
 import modifyVarPlugin from "./plugins/modifyVarPlugin.js";
 import path from "path";
+import modifyProjectPlugin from "./plugins/modifyProjectPlugin.js";
 
 /**
  * 修改文件中的变量，一般用于切换非标准工程的环境等场景
@@ -54,10 +55,16 @@ export function modifyJsonFile(filePath, config) {
 }
 
 export function modifyProjectFile(filePath) {
-  console.log('modifyProjectFile:' + filePath)
-    //  读取原来文件内容
-    const oldContent = fs.readFileSync(filePath);
-    //  强行转换成js文件
-    const addContent = 'let b=' + oldContent + ';exports.b = b;';
-    console.log(addContent)
+  console.log("modifyProjectFile:" + filePath);
+
+  const oldFileText = fs.readFileSync(filePath);
+  const tempText = `let tempV = ${oldFileText};exports.b = b;`;
+  const newFileText = babel.transformSync(tempText, {
+    configFile: false,
+    plugins: [[modifyProjectPlugin, { appid: "555" }]],
+  }).code;
+  const tempPath = path.resolve(process.cwd(), `${new Date().getTime()}.js`);
+  fs.writeFileSync(tempPath, newFileText, "utf8");
+  const result = require(`./${tempPath}`).tempV;
+  fs.writeFileSync(filePath, JSON.stringify(result, null, 2), "utf8");
 }
