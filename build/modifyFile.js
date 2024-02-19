@@ -5,6 +5,8 @@ import * as prettier from "prettier";
 import modifyVarPlugin from "./plugins/modifyVarPlugin.js";
 import path from "path";
 import modifyProjectPlugin from "./plugins/modifyProjectPlugin.js";
+import postcss from "postcss";
+import postcssChangeImport from "./plugins/postcss-change-import.js"
 
 /**
  * 修改文件中的变量，一般用于切换非标准工程的环境等场景
@@ -67,4 +69,13 @@ export function modifyProjectFile(filePath) {
   fs.writeFileSync(tempPath, newFileText, "utf8");
   const result = require(`./${tempPath}`).tempV;
   fs.writeFileSync(filePath, JSON.stringify(result, null, 2), "utf8");
+}
+
+
+export async function modifyWXSSImport(filePath, params) {
+  if (filePath && Array.isArray(params) && params.length > 0) {
+    const originFile = fs.readFileSync(filePath)
+    const result = await postcss([postcssChangeImport(params)]).process(originFile, {from: '', to: ''})
+    fs.writeFileSync(filePath, result.css)
+  }
 }
