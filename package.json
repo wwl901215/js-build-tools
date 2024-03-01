@@ -8,7 +8,8 @@
         "mec": "node ./scripts/modifyEnvConfig.js",
         "mj": "node ./scripts/mofifyJson.js",
         "mp": "node ./scripts/modifyProject.js",
-        "mw": "node ./scripts/modifyWxss.js"
+        "mw": "node ./scripts/modifyWxss.js",
+        "b:b": "rollup -c"
     },
     "dependencies": {
         "@babel/cli": "^7.23.9",
@@ -16,6 +17,10 @@
         "@babel/preset-env": "^7.23.9",
         "minimist": "^1.2.8",
         "postcss": "^8.4.35",
-        "prettier": "^3.2.4"
+        "prettier": "^3.2.4",
+        "rollup": "2.71.1"
+    },
+    "devDependencies": {
+        "@rollup/plugin-json": "^6.1.0"
     }
 }

@@ -7,6 +7,7 @@ import path from "path";
 import modifyProjectPlugin from "./plugins/modifyProjectPlugin.js";
 import postcss from "postcss";
 import postcssChangeImport from "./plugins/postcss-change-import.js"
+import { version, name } from "../package.json"
 
 /**
  * 修改文件中的变量，一般用于切换非标准工程的环境等场景
@@ -78,4 +79,8 @@ export async function modifyWXSSImport(filePath, params) {
     const result = await postcss([postcssChangeImport(params)]).process(originFile, {from: '', to: ''})
     fs.writeFileSync(filePath, result.css)
   }
+}
+
+export function getPackageInfo() {
+  return {version, name}
 }
